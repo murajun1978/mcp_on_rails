@@ -1,0 +1,13 @@
+services:
+  app:
+    build:
+      context: .
+      target: dev
+    volumes:
+      - .:/rails
+      - bundler:/usr/local/bundle
+    ports:
+      - "3000:3000"
+
+volumes:
+  bundler:
