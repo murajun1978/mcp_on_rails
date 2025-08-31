@@ -18,9 +18,7 @@ module Tools
         articles = Article.search_by_title(query).order(id: :desc).limit(limit).offset(offset)
 
         rows = articles.pluck(:id, :title, :content)
-        items = rows.map { |id, title, content|
-          { id: id, title: title, content_preview: content.to_s[0, 120] }
-        }
+        items = Tools::Builders::ArticlesItem.build(rows)
 
         MCP::Tool::Response.new([
           { type: "text", text: { count: items.size, items: items }.to_json }
