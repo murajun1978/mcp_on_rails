@@ -50,3 +50,21 @@ articles.each do |attrs|
 		article.content = attrs[:content]
 	end
 end
+
+# Users seed data
+users = [
+	{
+		email_address: "user@example.com",
+		password: "Rdb8/OEAF4g="
+	},
+	{
+		email_address: "user2@example.com",
+		password: "wAoD9/2ZB5M="
+	}
+]
+
+users.each do |attrs|
+	User.find_or_create_by!(email_address: attrs[:email_address]) do |user|
+		user.password = attrs[:password]
+	end
+end
